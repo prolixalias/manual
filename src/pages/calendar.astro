@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import CritterCalendar from "../components/CritterCalendar.astro";
+import "../styles/calendar.css";
+/* TEMP watermark lives at the top of calendar.css — delete that block to remove it. */
+---
+
+<Base
+  op="calendar"
+  title="Critter Calendar"
+  description="Parenting schedule, 5-2-2-5 rotation from Monday 17 August 2026 onward."
+>
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" />
+
+  <section class="hero wrap">
+    <p class="kicker">5-2-2-5</p>
+    <h1>Critter Calendar.</h1>
+    <p class="lede">
+      Mom is pink. Dad is blue. The cycle repeats every 14 days from Monday,
+      17 August 2026.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap calendar-embed">
+      <CritterCalendar />
+    </div>
+  </section>
+
+  <script is:inline src="/scripts/calendar.js"></script>
+</Base>

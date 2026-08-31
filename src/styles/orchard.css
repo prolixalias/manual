@@ -1,0 +1,193 @@
+.orchard {
+    --tree-size: 40px;
+    --grid-color: #eee;
+    --tooltip-width: 160px;
+    --primary-color: #333;
+    --background-color: #f5f6f5;
+    --tree-bg: #d3d3d3;
+}
+html[data-theme="dark"] .orchard {
+    --primary-color: #ddd;
+    --background-color: #222;
+    --tree-bg: #666;
+    --grid-color: #3d3d3d;
+}
+html[data-theme="dark"] .orchard .container {
+    background-color: #292929;
+    border-color: #f5f5f5;
+}
+html[data-theme="dark"] .orchard .title-block {
+    background-color: #292929;
+    border-color: #f5f5f5;
+}
+html[data-theme="dark"] .orchard .footer {
+    border-top-color: #525252;
+    color: #adadad;
+}
+html[data-theme="dark"] .orchard .dimension-label {
+    color: #adadad;
+}
+html[data-theme="dark"] .orchard .tooltiptext {
+    background-color: #333;
+    color: #f5f5f5;
+    border-color: #525252;
+}
+.orchard {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--primary-color);
+    background-color: transparent;
+    padding: 20px;
+    text-align: center;
+    clear: both;
+}
+.orchard h1 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.orchard p {
+    font-size: 0.85em;
+    margin: 5px 0;
+}
+.orchard .container {
+    width: min(400px, 100vw - 40px);
+    height: auto;
+    aspect-ratio: 1 / 2;
+    border: 2px solid #000;
+    position: relative;
+    margin: 50px auto 20px;
+    background-color: #fff;
+    background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px; /* 4' grid at 10px/ft */
+}
+.orchard .tree {
+    position: absolute;
+    width: var(--tree-size);
+    height: var(--tree-size);
+    background-color: var(--tree-bg);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    z-index: 10;
+}
+.orchard .tree:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 101;
+}
+.orchard .tree.sick {
+    border: 2px solid #ff4444;
+    filter: brightness(0.8) sepia(0.5);
+}
+.orchard .canopy {
+    position: absolute;
+    background-color: rgba(211, 211, 211, 0.3); /* transparent light gray */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* below trees */
+}
+.orchard .tooltip .tooltiptext {
+    visibility: hidden;
+    width: var(--tooltip-width);
+    background-color: #333;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.5em;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 8px;
+    position: absolute;
+    z-index: 100;
+    bottom: 150%;
+    left: 50%;
+    margin-left: calc(var(--tooltip-width) / -2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.orchard .tooltip .tooltiptext .description {
+    font-size: 0.65em;
+    display: block;
+}
+.orchard .tooltip:hover .tooltiptext,
+.orchard .tooltip.active .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.orchard .north-arrow {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+}
+.orchard .north-arrow::after {
+    content: 'N';
+    display: block;
+    font-size: 14px;
+    margin-top: -5px;
+}
+.orchard .dimension-label {
+    position: absolute;
+    font-size: 12px;
+    color: #666;
+    font-family: 'Roboto Mono', monospace;
+}
+.orchard .width-label {
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.orchard .height-label {
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+}
+.orchard .column-label {
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    color: #666;
+}
+.orchard .west-label { left: 100px; transform: translateX(-50%); }
+.orchard .east-label { left: 300px; transform: translateX(-50%); }
+.orchard .footer {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+.orchard .title-block {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #fff;
+}
+.orchard .title-block p {
+    margin: 2px 0;
+    font-size: 0.75em;
+}
+@media (max-width: 600px) {
+    .orchard .tooltiptext { 
+        width: 120px; 
+        font-size: 0.7em; 
+        margin-left: -60px; 
+    }
+    .orchard .tooltiptext .description {
+        font-size: 0.6em;
+    }
+}
+

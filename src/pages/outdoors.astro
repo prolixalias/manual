@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import ManualCard from "../components/ManualCard.astro";
+import { outdoors } from "../data/site";
+---
+
+<Base
+  op="outdoors"
+  title="Outdoors"
+  description="Dock fiber, golf cart, grill, fire pit, lawn, orchard, and the pontoon."
+>
+  <section class="hero wrap">
+    <p class="kicker">Yard, river, trees</p>
+    <h1>Outdoors.</h1>
+    <p class="lede">
+      The dock, the cart, the grill, the fire pit, who mows, twelve fruit trees,
+      and the boat. Shoes on.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap manuals-grid">
+      {outdoors.map((manual) => <ManualCard manual={manual} />)}
+    </div>
+  </section>
+</Base>

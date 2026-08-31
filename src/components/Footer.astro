@@ -1,0 +1,19 @@
+---
+import { site, nav } from "../data/site";
+---
+
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a class="foot-mark" href="/" aria-label={site.name}>
+        <img src="/media/home-icon.png" alt="" width="512" height="512" />
+      </a>
+    </div>
+    <div>
+      <h3>Sections</h3>
+      {nav.map((item) => (
+        <div><a href={item.href}>{item.label}</a></div>
+      ))}
+    </div>
+  </div>
+</footer>

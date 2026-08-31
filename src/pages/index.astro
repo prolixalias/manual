@@ -1,0 +1,114 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  op="home"
+  title={site.name}
+  description="Hone manual."
+>
+  <section class="masthead">
+    <img
+      class="masthead-img"
+      src="/media/banner-paddleboard.png"
+      alt="Paddleboard on the river"
+    />
+    <div class="masthead-scrim"></div>
+    <div class="wrap">
+      <div class="masthead-copy">
+        <!-- <p class="kicker">{site.address.line1} · Cheboygan</p> -->
+        <h1>Good <span id="phase">day</span>.</h1>
+        <p class="lede">
+          The house, documented.
+        </p>
+        <p class="hero-actions">
+          <a class="btn solid" href="/calendar/">Calendar</a>
+          <a class="btn ghost" href="http://flowcontrol.local" rel="noopener noreferrer">Irrigation</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="stack">
+        <p class="eyebrow">Network</p>
+        <h2>WiFi</h2>
+        <p class="lede">
+          This is the SSID for our guests.
+        </p>
+        <div class="wifi-card">
+          <span class="eyebrow">Network</span>
+          <code>{site.wifi.network}</code>
+        </div>
+        <div class="wifi-card">
+          <span class="eyebrow">WPA2 password</span>
+          <code>{site.wifi.password}</code>
+          <p>{site.wifi.hint}</p>
+        </div>
+      </div>
+      <figure class="wifi-diagram">
+        <img src="/media/wifi.png" alt="WiFi QR code" />
+      </figure>
+    </div>
+  </section>
+
+  <!--
+  <section class="section band" id="weather">
+    <div class="wrap stack">
+      <p class="eyebrow">Outside</p>
+      <h2>Weather</h2>
+      <div class="weather-stack">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/45d58n84d43/49721/?unit=us" data-label_1="Cheboygan" data-theme="pure">Cheboygan</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/45d43n84d99/harbor-springs/?unit=us" data-label_1="Harbor Springs" data-theme="pure">Harbor Springs</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/44d76n85d62/traverse-city/?unit=us" data-label_1="Traverse City" data-theme="pure">Traverse City</a>
+      </div>
+      <p class="note"><strong>Note.</strong> This source (forecast7) is potentially unreliable.</p>
+    </div>
+  </section>
+  -->
+
+  <section class="section" id="help">
+    <div class="wrap">
+      <p class="eyebrow">If something's wrong</p>
+      <h2 style="margin: 0.4rem 0 1.5rem">Help</h2>
+      <div class="specs">
+        <article>
+          <h3>Emergency</h3>
+          <p>If you need help in an emergency, call <strong>911</strong>.</p>
+        </article>
+        <article>
+          <h3>Law Enforcement - when time is <em>not</em> of the essence</h3>
+          <ul class="help-list">
+            <li>
+              <strong>Cheboygan County Sheriff</strong>
+              <a href="tel:+12316273155">{site.emergency.sheriff}</a>
+            </li>
+            <li>
+              <strong>Michigan State Police</strong>
+              <a href="tel:+12316279973">{site.emergency.msp}</a>
+            </li>
+          </ul>
+        </article>
+        <article>
+          <h3>Fire - when time is <em>not</em> of the essence</h3>
+          <ul class="help-list">
+            <li>
+              <strong>Alverno Fire Department</strong>
+              <a href="tel:+12316258524">{site.emergency.fire}</a>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const hour = new Date().getHours();
+    const phase = document.getElementById("phase");
+    if (phase) {
+      phase.textContent = hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
+    }
+  </script>
+</Base>

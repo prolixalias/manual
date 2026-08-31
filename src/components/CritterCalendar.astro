@@ -1,0 +1,58 @@
+---
+---
+
+<div id="critter-calendar" class="critter-calendar">
+  <div class="calendar-poster">
+    <header class="calendar-header">
+      <nav class="year-tabs" id="year-tabs" aria-label="Select year"></nav>
+      <h1 class="year-title" id="year-title">2026</h1>
+      <p class="subtitle">Critter Calendar</p>
+    </header>
+
+    <div class="legend-bar">
+      <div class="legend-row">
+        <div class="legend-items">
+          <div class="legend-item">
+            <span class="swatch parent1"></span>
+            <span>Mom — Pink</span>
+          </div>
+          <div class="legend-item">
+            <span class="swatch parent2"></span>
+            <span>Dad — Blue</span>
+          </div>
+        </div>
+        <p class="legend-note" id="pattern-note"></p>
+      </div>
+
+      <div class="schedule-card">
+        <h3>5-2-2-5 Reference</h3>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="block-label">Week 1</td>
+              <td class="p2">D</td><td class="p2">D</td>
+              <td class="p1">M</td><td class="p1">M</td><td class="p1">M</td><td class="p1">M</td><td class="p1">M</td>
+            </tr>
+            <tr>
+              <td class="block-label">Week 2</td>
+              <td class="p2">D</td><td class="p2">D</td>
+              <td class="p1">M</td><td class="p1">M</td>
+              <td class="p2">D</td><td class="p2">D</td><td class="p2">D</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="schedule-caption">5-2-2-5 cycle repeats every 14 days from <strong id="schedule-start-label">Mon, Aug 17, 2026</strong>.</p>
+      </div>
+    </div>
+
+    <div id="year-panels"></div>
+
+    <footer class="calendar-footer">&nbsp;</footer>
+  </div>
+</div>

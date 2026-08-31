@@ -1,0 +1,72 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.5/.schema/devbox.schema.json",
+  "packages": [
+    "bat@latest",
+    "curl@latest",
+    "delta@latest",
+    "direnv@latest",
+    "eza@latest",
+    "fzf@latest",
+    "gh@latest",
+    "git@latest",
+    "jq@latest",
+    "nodejs@22",
+    "ripgrep@latest",
+    "wget@latest",
+    "playwright-test@latest",
+    "chromium@latest"
+  ],
+  "env": {
+    "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS": "true"
+  },
+  "shell": {
+    "init_hook": [
+      ". \"$PWD/scripts/devbox-path.sh\"",
+      "alias cat='bat --paging never --theme DarkNeon --style plain'",
+      "alias ls='eza -G --git'",
+      "[ -d node_modules ] || npm install"
+    ],
+    "scripts": {
+      "which-node": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "command -v node",
+        "node -v",
+        "command -v npm",
+        "npm -v"
+      ],
+      "install": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "npm install"
+      ],
+      "dev": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "npm run dev"
+      ],
+      "build": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "npm run build"
+      ],
+      "preview": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "npm run preview"
+      ],
+      "ci": [
+        ". \"$PWD/scripts/devbox-path.sh\"",
+        "npm ci",
+        "npm run build"
+      ],
+      "help": [
+        "echo 'Home manual'",
+        "echo ''",
+        "echo 'All Node work is Devbox nodejs@22.'",
+        "echo ''",
+        "echo '  devbox run install     npm install'",
+        "echo '  devbox run dev         http://127.0.0.1:4321'",
+        "echo '  devbox run build       production build'",
+        "echo '  devbox run preview     serve dist/'",
+        "echo '  devbox run ci          npm ci + production build'",
+        "echo '  devbox run which-node  confirm Nix node, not asdf'"
+      ]
+    }
+  }
+}

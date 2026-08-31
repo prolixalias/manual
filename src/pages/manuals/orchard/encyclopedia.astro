@@ -1,0 +1,73 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { trees } from "../../../data/trees";
+---
+
+<Base
+  op="outdoors"
+  title="Tree Encyclopedia"
+  description="Variety details for every labeled tree in the orchard (A–L). Pollination, harvest, size, and what's going on at home."
+>
+  <section class="hero wrap">
+    <p class="kicker">Orchard · A–L</p>
+    <h1>Tree encyclopedia.</h1>
+    <p class="lede">
+      Variety details for every labeled tree. Letters match the
+      <a href="/manuals/orchard/">map and inventory</a>.
+    </p>
+    <p class="hero-actions">
+      <a class="btn" href="/manuals/orchard/">Back to the map</a>
+    </p>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap stack" style="gap: 1rem">
+      {trees.map((tree) => (
+        <article id={`tree-${tree.letter.toLowerCase()}`} class="tree-entry">
+          <h3>
+            {tree.emoji} {tree.letter}: {tree.name}
+            <span class="rootstock">({tree.rootstock})</span>
+            {tree.sick && <span class="sick-tag">sick</span>}
+          </h3>
+          <p><strong>Type:</strong> {tree.type}</p>
+          <p>{tree.at_a_glance}</p>
+          <dl class="tree-facts">
+            <div>
+              <dt>Pollination</dt>
+              <dd>{tree.pollination}</dd>
+            </div>
+            <div>
+              <dt>Mature size</dt>
+              <dd>{tree.size}</dd>
+            </div>
+            <div>
+              <dt>Harvest</dt>
+              <dd>{tree.harvest}</dd>
+            </div>
+            <div>
+              <dt>Best uses</dt>
+              <dd>{tree.uses}</dd>
+            </div>
+            <div>
+              <dt>Here at home</dt>
+              <dd>
+                {tree.notes}
+                {tree.sick && tree.treatment && (
+                  <>
+                    {" "}
+                    <strong>Active treatment:</strong> {tree.treatment}
+                  </>
+                )}
+              </dd>
+            </div>
+          </dl>
+          {tree.learn_more && (
+            <p>
+              <a href={tree.learn_more} rel="noopener noreferrer">More about this variety (external)</a>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

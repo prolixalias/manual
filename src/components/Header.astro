@@ -1,0 +1,25 @@
+---
+import { nav } from "../data/site";
+import type { NavId } from "../data/site";
+import ThemeSwitch from "./ThemeSwitch.astro";
+
+interface Props { op: NavId }
+const { op } = Astro.props;
+const headerNav = nav.filter((item) => item.id !== "calendar");
+---
+
+<header class="site">
+  <div class="wrap header-row">
+    <nav class="pivot" aria-label="Sections">
+      {headerNav.flatMap((item, index) => [
+        index > 0 ? <span class="pivot-sep" aria-hidden="true">|</span> : null,
+        <a href={item.href} aria-current={item.id === op ? "page" : undefined}>
+          {item.label}
+        </a>,
+      ])}
+    </nav>
+    <div class="header-tools">
+      <ThemeSwitch />
+    </div>
+  </div>
+</header>

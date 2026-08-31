@@ -1,0 +1,117 @@
+<button
+  type="button"
+  class="theme-switch"
+  role="switch"
+  aria-checked="false"
+  aria-label="Dark mode"
+>
+  <span class="theme-switch-icon theme-switch-sun" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+    </svg>
+  </span>
+  <span class="theme-switch-thumb"></span>
+  <span class="theme-switch-icon theme-switch-moon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+      <path d="M21 14.5A8.2 8.2 0 0 1 9.5 3 7.1 7.1 0 1 0 21 14.5z"></path>
+    </svg>
+  </span>
+</button>
+
+<script>
+  const KEY = "manual-theme";
+  const DRAG_PX = 4;
+
+  const current = () =>
+    (document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+
+  const apply = (theme: "light" | "dark", persist = true) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (persist) {
+      try { localStorage.setItem(KEY, theme); } catch {}
+    }
+    sync();
+  };
+
+  const sync = () => {
+    const dark = current() === "dark";
+    document.querySelectorAll<HTMLButtonElement>(".theme-switch").forEach((button) => {
+      button.setAttribute("aria-checked", dark ? "true" : "false");
+      if (!button.classList.contains("is-dragging")) {
+        button.style.removeProperty("--slide");
+      }
+    });
+  };
+
+  const bind = (button: HTMLButtonElement) => {
+    if (button.dataset.bound === "1") return;
+    button.dataset.bound = "1";
+    let pointerId: number | null = null;
+    let startX = 0;
+    let dragging = false;
+    let suppressClick = false;
+
+    const slideFromEvent = (event: PointerEvent) => {
+      const rect = button.getBoundingClientRect();
+      const thumb = Math.min(rect.height - 4, rect.width / 2);
+      const travel = Math.max(1, rect.width - thumb - 4);
+      const x = event.clientX - rect.left - 2 - thumb / 2;
+      return Math.min(1, Math.max(0, x / travel));
+    };
+
+    const finish = (event: PointerEvent) => {
+      if (pointerId === null) return;
+      try { button.releasePointerCapture(pointerId); } catch {}
+      pointerId = null;
+      button.classList.remove("is-dragging");
+      if (dragging) {
+        apply(slideFromEvent(event) >= 0.5 ? "dark" : "light");
+        suppressClick = true;
+      }
+      dragging = false;
+      button.style.removeProperty("--slide");
+    };
+
+    button.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      dragging = false;
+      button.setPointerCapture(event.pointerId);
+    });
+
+    button.addEventListener("pointermove", (event) => {
+      if (pointerId === null || event.pointerId !== pointerId) return;
+      if (!dragging && Math.abs(event.clientX - startX) >= DRAG_PX) {
+        dragging = true;
+        button.classList.add("is-dragging");
+      }
+      if (!dragging) return;
+      const slide = slideFromEvent(event);
+      button.style.setProperty("--slide", String(slide));
+      apply(slide >= 0.5 ? "dark" : "light", false);
+    });
+
+    button.addEventListener("pointerup", finish);
+    button.addEventListener("pointercancel", finish);
+
+    button.addEventListener("click", (event) => {
+      if (suppressClick) {
+        event.preventDefault();
+        suppressClick = false;
+        return;
+      }
+      apply(current() === "dark" ? "light" : "dark");
+    });
+
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      apply(event.key === "ArrowRight" ? "dark" : "light");
+    });
+  };
+
+  document.querySelectorAll<HTMLButtonElement>(".theme-switch").forEach(bind);
+  sync();
+</script>

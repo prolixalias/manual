@@ -1,0 +1,20 @@
+---
+import type { Manual } from "../data/site";
+
+interface Props {
+  manual: Manual;
+}
+
+const { manual } = Astro.props;
+const stripe = manual.group === "outdoors" ? "outdoor" : "indoor";
+---
+
+<a class={`op-card ${stripe}`} href={manual.href}>
+  <div class="op-card-media">
+    <img src={manual.banner} alt="" />
+  </div>
+  <p class="eyebrow">{manual.group === "outdoors" ? "Outdoors" : "Indoors"}</p>
+  <h2>{manual.title}</h2>
+  <p>{manual.blurb}</p>
+  <span class="go">Open →</span>
+</a>

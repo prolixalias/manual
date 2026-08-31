@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import ManualCard from "../components/ManualCard.astro";
+import { indoors } from "../data/site";
+---
+
+<Base
+  op="indoors"
+  title="Indoors"
+  description="How the inside of the house works — vacation checklist, heat, kitchen, laundry, bedrooms, charger, trash, plants, cameras."
+>
+  <section class="hero wrap">
+    <p class="kicker">Inside the house</p>
+    <h1>Indoors.</h1>
+    <p class="lede">
+      Thermostat, fireplace, kitchen, laundry, bedrooms, the charger in the
+      garage, trash day, plants, and cameras. The stuff you touch without
+      putting on shoes.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap manuals-grid">
+      {indoors.map((manual) => <ManualCard manual={manual} />)}
+    </div>
+  </section>
+</Base>

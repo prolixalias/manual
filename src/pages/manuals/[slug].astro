@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Related from "../../components/Related.astro";
+import { manuals } from "../../data/site";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("manuals");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const catalog = manuals.find((item) => item.id === entry.id);
+---
+
+<Base
+  op={entry.data.group}
+  title={entry.data.title}
+  description={entry.data.lede}
+>
+  <section class="masthead page-hero">
+    <img class="masthead-img" src={entry.data.banner} alt="" />
+    <div class="masthead-scrim"></div>
+    <div class="wrap">
+      <div class="masthead-copy">
+        <p class="kicker">{entry.data.kicker}</p>
+        <h1>{entry.data.title}</h1>
+        <p class="lede">{entry.data.lede}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="max-width: 46rem">
+      <div class="prose">
+        <Content />
+      </div>
+      {entry.data.note && (
+        <p class="note" style="margin-top: 1.5rem">
+          <strong>Note.</strong> {entry.data.note}
+        </p>
+      )}
+    </div>
+  </section>
+
+  {catalog && <Related current={catalog.id} />}
+</Base>

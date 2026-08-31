@@ -1,0 +1,216 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Related from "../../../components/Related.astro";
+import { trees, sickTrees } from "../../../data/trees";
+import "../../../styles/orchard.css";
+---
+
+<Base
+  op="outdoors"
+  title="Orchard"
+  description="Twelve fruit trees on a 40′ × 80′ plot — Zone 5a. Map, pollination, health watch, harvest, and care."
+>
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+
+  <section class="masthead page-hero">
+    <img class="masthead-img" src="/media/banner-orchard.png" alt="The orchard plot" />
+    <div class="masthead-scrim"></div>
+    <div class="wrap">
+      <div class="masthead-copy">
+        <p class="kicker">Zone 5a · full sun</p>
+        <h1>Orchard.</h1>
+        <p class="lede">
+          Twelve fruit trees on a 40′ × 80′ plot. Sourced from
+          <a href="https://www.starkbros.com/" rel="noopener noreferrer">Stark Bros</a> (Missouri)
+          and Spray's (Cheboygan). Half planted fall 2024, the rest spring 2025.
+          Irrigation by Josh Agee.
+        </p>
+        <p class="hero-actions">
+          <a class="btn solid" href="/manuals/orchard/encyclopedia/">Tree encyclopedia</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap orchard-wrap">
+      <div class="orchard">
+        <div class="container" id="orchard-container">
+          <div class="north-arrow">↑</div>
+          <div class="column-label west-label">West</div>
+          <div class="column-label east-label">East</div>
+          <div class="dimension-label width-label">40' (E-W)</div>
+          <div class="dimension-label height-label">80' (N-S)</div>
+        </div>
+        <div class="footer">
+          <div class="title-block">
+            <p>Scale: 1:120 (10 pixels per foot)</p>
+            <p>Dimensions: 40' (E-W) × 80' (N-S)</p>
+            <p>USDA Zone 5a · Full sun</p>
+            <hr />
+            <p><strong>Map key:</strong> D = Dwarf · SD = Semi-Dwarf · Red border = sick · Gray circle = mature canopy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split">
+      <div class="stack">
+        <p class="eyebrow">A–L</p>
+        <h2>Tree inventory</h2>
+        <p>Letters match the map. Tap a variety for pollination, harvest, and notes.</p>
+        <ul>
+          {trees.map((tree) => (
+            <li>
+              <strong>{tree.letter}</strong>:
+              <a href={`/manuals/orchard/encyclopedia/#tree-${tree.letter.toLowerCase()}`}>{tree.name}</a>
+              ({tree.rootstock})
+              {tree.sick && <span class="sick-tag">sick</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">Who pollinates whom</p>
+        <h2>Cheat sheet</h2>
+        <ul>
+          <li><strong>Apples (D, H, L):</strong> Wolf River (D) and Golden Delicious (H, L) pollinate each other. Plant replacements in pairs.</li>
+          <li><strong>Pears (C, E, I):</strong> Bartlett (C) and Seckel (I) help each other. Chojuro (E) needs Bartlett or another Asian pear.</li>
+          <li><strong>Cherries (A, B, F):</strong> Van sweet (A) needs a second sweet cherry we don't have yet — replace with a sweet if A dies. North Star (B) and Montmorency (F) are self-fertile sours.</li>
+          <li><strong>Peach (G):</strong> Self-fertile — no partner needed.</li>
+          <li><strong>Plums (J, K):</strong> Stanley (K) is self-fertile. Pipestone (J) needs an American or Canadian plum — Stanley may not be enough.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="health-watch">
+    <div class="wrap stack">
+      <p class="eyebrow">Red borders</p>
+      <h2>Health watch</h2>
+      <p>These trees need extra attention right now:</p>
+      <div class="specs">
+        {sickTrees.map((tree) => (
+          <article>
+            <h3>{tree.letter} — {tree.name}</h3>
+            <p><strong>{tree.active_issue}.</strong> {tree.treatment}</p>
+            <p><a href={`/manuals/orchard/encyclopedia/#tree-${tree.letter.toLowerCase()}`}>Encyclopedia →</a></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split">
+      <div class="stack">
+        <p class="eyebrow">Zone 5a</p>
+        <h2>Harvest calendar</h2>
+        <p>Rough order — see the encyclopedia for ripeness cues per tree.</p>
+        <ul>
+          <li><strong>June:</strong> <a href="/manuals/orchard/encyclopedia/#tree-a">A</a>, <a href="/manuals/orchard/encyclopedia/#tree-b">B</a>, <a href="/manuals/orchard/encyclopedia/#tree-f">F</a> — cherries</li>
+          <li><strong>July:</strong> <a href="/manuals/orchard/encyclopedia/#tree-g">G</a> (peach); pears starting (<a href="/manuals/orchard/encyclopedia/#tree-c">C</a>)</li>
+          <li><strong>August:</strong> <a href="/manuals/orchard/encyclopedia/#tree-c">C</a>, <a href="/manuals/orchard/encyclopedia/#tree-i">I</a> (pears); <a href="/manuals/orchard/encyclopedia/#tree-e">E</a> (Asian pear); <a href="/manuals/orchard/encyclopedia/#tree-j">J</a> (plum); apples beginning (<a href="/manuals/orchard/encyclopedia/#tree-d">D</a>)</li>
+          <li><strong>September–October:</strong> <a href="/manuals/orchard/encyclopedia/#tree-k">K</a> (plum); <a href="/manuals/orchard/encyclopedia/#tree-d">D</a>, <a href="/manuals/orchard/encyclopedia/#tree-h">H</a>, <a href="/manuals/orchard/encyclopedia/#tree-l">L</a> (apples)</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">Year round</p>
+        <h2>Seasonal checklist</h2>
+        <ul class="checklist">
+          <li>
+            <input type="checkbox" id="spring" />
+            <label for="spring"><strong>Spring:</strong> Fertilize; watch blooms for frost (cover if needed).</label>
+          </li>
+          <li>
+            <input type="checkbox" id="summer" />
+            <label for="summer"><strong>Summer:</strong> Water deeply; thin and harvest; monitor pests; net fruit.</label>
+          </li>
+          <li>
+            <input type="checkbox" id="fall" />
+            <label for="fall"><strong>Fall:</strong> Clean debris; light fertilizer; refresh mulch; trunk guards for rodents.</label>
+          </li>
+          <li>
+            <input type="checkbox" id="winter" />
+            <label for="winter"><strong>Winter:</strong> Dormant pruning; dormant oil spray.</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Keeping them alive</p>
+      <h2 style="margin: 0.4rem 0 1.5rem">Caring for the orchard</h2>
+      <div class="specs">
+        <article>
+          <h3>Replacing a tree</h3>
+          <ul>
+            <li>Remove old roots and debris; test soil pH (6.0–7.0 ideal).</li>
+            <li>Dig holes twice the root-ball width; water in well.</li>
+            <li>Amend with compost. Mulch 3–4″ deep, 6″ clear of trunks.</li>
+            <li>Stake dwarfs and semi-dwarfs if wind is a concern.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Watering</h3>
+          <ul>
+            <li>Target 1–2″ per week, deep and slow — more during July–August fruit swell.</li>
+            <li>Use the drip lines; check moisture 6″ down before assuming they're wet.</li>
+            <li>Cherries and peaches: steady moisture prevents cracking. Avoid wetting leaves.</li>
+            <li>Apples and pears: regular water while fruit sizes; established trees tolerate brief dry spells.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Fertilizing</h3>
+          <ul>
+            <li>Balanced 10-10-10 or organic: early spring, post-harvest, and mid-summer for peaches.</li>
+            <li>Spread under the drip line; half strength on young trees.</li>
+            <li>Go easy on nitrogen for cherries and peaches; pears appreciate potassium for sweetness.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Pruning</h3>
+          <p>Prune during dormancy (late winter) unless noted. Open the canopy for air and light.</p>
+          <ul>
+            <li><strong>Cherries:</strong> Vase shape; remove 20–30% of new growth.</li>
+            <li><strong>Pears:</strong> Central leader; thin crowded branches. Asian pears (E) may need extra thinning.</li>
+            <li><strong>Apples:</strong> Central leader; 20–30% annually. Keep Wolf River (D) manageable.</li>
+            <li><strong>Peaches &amp; plums:</strong> Open center; up to 50% renewal pruning each year.</li>
+            <li><strong>Summer:</strong> Thin overloaded fruit for better size (especially peaches).</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Pests &amp; disease</h3>
+          <ul>
+            <li>IPM first: monitor, cultural fixes, then organics.</li>
+            <li>Common: aphids (soap spray), borers (prune out), fungal issues (airflow + cleanup).</li>
+            <li>Net cherries and peaches against birds when fruit ripens.</li>
+            <li>Tree-specific issues are in <a href="#health-watch">Health watch</a> and the <a href="/manuals/orchard/encyclopedia/">encyclopedia</a>.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Weeds &amp; troubleshooting</h3>
+          <ul>
+            <li>Keep a 3–4′ weed-free ring around each trunk. Refresh mulch when it thins in summer.</li>
+            <li><strong>Poor fruit set:</strong> Pollination gap — see cheat sheet or encyclopedia.</li>
+            <li><strong>Yellow leaves:</strong> Water or nutrient stress — test soil, check irrigation.</li>
+            <li><strong>Cracked fruit:</strong> Uneven watering — mulch and keep the schedule steady.</li>
+            <li><strong>Low yields:</strong> Trees are still young; expect more after 3–5 years.</li>
+            <li><strong>Sick trees:</strong> Health watch; call an arborist if it spreads.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note" style="margin-top: 1.5rem">
+        <strong>Note.</strong> Update this manual yearly — especially health watch and harvest notes.
+      </p>
+    </div>
+  </section>
+
+  <Related current="orchard" />
+
+  <script is:inline src="/scripts/orchard.js"></script>
+</Base>

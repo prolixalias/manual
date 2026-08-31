@@ -1,0 +1,726 @@
+/* TEMP watermark — delete this block to remove “Under development”. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='220'><text x='190' y='120' text-anchor='middle' font-family='Jost,Segoe UI,sans-serif' font-size='22' font-weight='700' fill='%232c2825' fill-opacity='0.2' transform='rotate(-28 190 120)'>Under development</text></svg>");
+  mix-blend-mode: multiply;
+}
+html[data-theme="dark"] body::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='220'><text x='190' y='120' text-anchor='middle' font-family='Jost,Segoe UI,sans-serif' font-size='22' font-weight='700' fill='%23ffffff' transform='rotate(-28 190 120)'>Under development</text></svg>");
+  mix-blend-mode: difference;
+  opacity: 0.35;
+}
+
+.critter-calendar {
+  --paper: #f7f2ea;
+  --paper-deep: #ebe3d4;
+  --ink: #2c2825;
+  --ink-soft: #5c554c;
+  --parent1: #e891a8;
+  --parent1-light: #fce4ec;
+  --parent1-deep: #c96b86;
+  --parent2: #6ba3c9;
+  --parent2-light: #dceef8;
+  --parent2-deep: #3d7fa6;
+  --neutral-day: #ffffff;
+  --neutral-muted: #f0ebe3;
+  --accent-gold: #b8956a;
+  --border: #d4c9b8;
+  --shadow: rgba(44, 40, 37, 0.08);
+
+  box-sizing: border-box;
+  font-family: 'Jost', system-ui, sans-serif;
+  color: var(--ink);
+  margin: 0 0 40px 0;
+}
+
+.critter-calendar *,
+.critter-calendar *::before,
+.critter-calendar *::after {
+  box-sizing: border-box;
+}
+
+.critter-calendar h1,
+.critter-calendar h3,
+.critter-calendar p,
+.critter-calendar footer {
+  font-family: inherit;
+  font-style: normal;
+  color: inherit;
+}
+
+.critter-calendar nav a {
+  background: none;
+}
+
+.calendar-page {
+  font-family: 'Jost', system-ui, sans-serif;
+}
+
+.calendar-page .critter-calendar {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(160deg, #e8dfd0 0%, #d9d0c0 100%);
+}
+
+.critter-calendar .calendar-poster {
+  max-width: 1400px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.7) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(184,149,106,0.08) 0%, transparent 45%),
+    var(--paper);
+  border-radius: 4px;
+  box-shadow:
+    0 2px 4px var(--shadow),
+    0 12px 40px rgba(44, 40, 37, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  border: 3px double var(--accent-gold);
+  outline: 8px solid var(--paper);
+  outline-offset: -11px;
+}
+
+.critter-calendar .calendar-header {
+  text-align: center;
+  padding: 36px 32px 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(184, 149, 106, 0.06) 40px,
+      rgba(184, 149, 106, 0.06) 41px
+    );
+  border-bottom: 2px solid var(--border);
+  position: relative;
+}
+
+.critter-calendar .calendar-header::before,
+.critter-calendar .calendar-header::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.critter-calendar .calendar-header::before { left: 32px; }
+.critter-calendar .calendar-header::after { right: 32px; }
+
+.critter-calendar .year-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0;
+}
+
+.critter-calendar .subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.critter-calendar .year-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 0 16px;
+}
+
+.critter-calendar .year-tab {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 8px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.critter-calendar .year-tab:hover {
+  background: white;
+  color: var(--ink);
+  border-color: var(--accent-gold);
+}
+
+.critter-calendar .year-tab.active {
+  background: var(--accent-gold);
+  color: white;
+  border-color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.critter-calendar .year-panel {
+  display: none;
+}
+
+.critter-calendar .year-panel.active {
+  display: block;
+}
+
+.critter-calendar .legend-bar {
+  padding: 18px 32px 22px;
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--border);
+}
+
+.critter-calendar .legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.critter-calendar .legend-items {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.critter-calendar .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.critter-calendar .legend-note {
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  max-width: 420px;
+  margin: 0;
+}
+
+.critter-calendar .legend-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.critter-calendar .swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.critter-calendar .swatch.parent1 { background: var(--parent1); }
+.critter-calendar .swatch.parent2 { background: var(--parent2); }
+.critter-calendar .swatch.neutral { background: var(--neutral-muted); border-style: dashed; }
+
+.critter-calendar .schedule-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  max-width: 640px;
+}
+
+.critter-calendar .schedule-card h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.critter-calendar .schedule-caption {
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  margin: 8px 0 0 0;
+  line-height: 1.4;
+}
+
+.critter-calendar .schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.68rem;
+}
+
+.critter-calendar .schedule-table th,
+.critter-calendar .schedule-table td {
+  border: 1px solid var(--border);
+  padding: 5px 6px;
+  text-align: center;
+  min-width: 36px;
+}
+
+.critter-calendar .schedule-table th {
+  background: var(--neutral-muted);
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+
+.critter-calendar .schedule-table td.p1 {
+  background: var(--parent1);
+  color: #5a2a3a;
+  font-weight: 600;
+}
+
+.critter-calendar .schedule-table td.p2 {
+  background: var(--parent2);
+  color: #1e4a63;
+  font-weight: 600;
+}
+
+.critter-calendar .schedule-table td.block-label {
+  background: var(--paper-deep);
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.critter-calendar .months-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.critter-calendar .month-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 12px 16px;
+  background: var(--paper);
+}
+
+.critter-calendar .month-card:nth-child(4n) {
+  border-right: none;
+}
+
+.critter-calendar .month-card:nth-child(n+9) {
+  border-bottom: none;
+}
+
+.critter-calendar .month-card.pattern-zone .month-banner {
+  background: linear-gradient(135deg, var(--parent2-light) 0%, var(--parent1-light) 100%);
+}
+
+.critter-calendar .month-banner {
+  text-align: center;
+  padding: 6px 0 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background: var(--neutral-muted);
+}
+
+.critter-calendar .month-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.critter-calendar .month-tag {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.critter-calendar .month-tag.starts-here {
+  color: var(--parent1-deep);
+  font-weight: 600;
+}
+
+.critter-calendar .weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.critter-calendar .weekday {
+  text-align: center;
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  padding: 2px 0;
+}
+
+.critter-calendar .weekday.sun { color: var(--accent-gold); }
+
+.critter-calendar .days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.critter-calendar .day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  position: relative;
+  background: var(--neutral-day);
+  border: 1px solid transparent;
+  min-height: 28px;
+}
+
+.critter-calendar .day.empty {
+  background: transparent;
+  border: none;
+}
+
+.critter-calendar .day.neutral {
+  background: var(--neutral-muted);
+  color: var(--ink-soft);
+}
+
+.critter-calendar .day.parent1 {
+  background: linear-gradient(145deg, var(--parent1-light), var(--parent1));
+  color: #5a2a3a;
+  border-color: var(--parent1-deep);
+  font-weight: 600;
+}
+
+.critter-calendar .day.parent2 {
+  background: linear-gradient(145deg, var(--parent2-light), var(--parent2));
+  color: #1e4a63;
+  border-color: var(--parent2-deep);
+  font-weight: 600;
+}
+
+.critter-calendar .day.today {
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--accent-gold);
+  z-index: 1;
+}
+
+.critter-calendar .day-label {
+  font-size: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.critter-calendar .day-num {
+  line-height: 1.1;
+}
+
+.critter-calendar .calendar-footer {
+  padding: 16px 32px 20px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+@media print {
+  .calendar-page {
+    background: white;
+    padding: 0;
+  }
+
+  .critter-calendar .calendar-poster {
+    max-width: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .critter-calendar .year-tabs {
+    display: none;
+  }
+
+  .critter-calendar .year-panel {
+    display: block !important;
+  }
+
+  .critter-calendar .year-panel:not(.active) {
+    display: none !important;
+  }
+
+  @page {
+    size: landscape;
+    margin: 0.35in;
+  }
+
+  .critter-calendar .day.parent1,
+  .critter-calendar .day.parent2,
+  .critter-calendar .swatch,
+  .critter-calendar .schedule-table td.p1,
+  .critter-calendar .schedule-table td.p2,
+  .critter-calendar .month-banner,
+  .critter-calendar .legend-bar,
+  .critter-calendar .calendar-header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (max-width: 1100px) {
+  .critter-calendar .months-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .critter-calendar .month-card:nth-child(4n) {
+    border-right: 1px solid var(--border);
+  }
+
+  .critter-calendar .month-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .critter-calendar .legend-row {
+    justify-content: center;
+  }
+
+  .critter-calendar .legend-items {
+    justify-content: center;
+  }
+
+  .critter-calendar .legend-note {
+    text-align: center;
+    max-width: none;
+  }
+
+  .critter-calendar .schedule-card {
+    max-width: none;
+  }
+}
+
+/* Embedded in manual page — compact layout when column is still tight */
+.calendar-section .critter-calendar .calendar-poster {
+  max-width: none;
+}
+
+@media (max-width: 1000px) {
+  .calendar-section .critter-calendar .months-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calendar-section .critter-calendar .month-card:nth-child(3n),
+  .calendar-section .critter-calendar .month-card:nth-child(4n) {
+    border-right: 1px solid var(--border);
+  }
+
+  .calendar-section .critter-calendar .month-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .calendar-section .critter-calendar .month-card:nth-child(n+11) {
+    border-bottom: none;
+  }
+
+  .calendar-section .critter-calendar .year-title {
+    font-size: 2.5rem;
+  }
+
+  .calendar-section .critter-calendar .calendar-header,
+  .calendar-section .critter-calendar .legend-bar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .calendar-section .critter-calendar .calendar-header::before,
+  .calendar-section .critter-calendar .calendar-header::after {
+    display: none;
+  }
+}
+
+/* iPhone / small phones only. iPad portrait is 768px and keeps the poster layout. */
+@media (max-width: 767px) {
+  html[data-op="calendar"] {
+    overflow-x: hidden;
+  }
+
+  html[data-op="calendar"] .hero {
+    padding: 2rem 0 1.25rem;
+  }
+
+  html[data-op="calendar"] .hero h1 {
+    font-size: clamp(1.85rem, 10vw, 2.4rem);
+  }
+
+  html[data-op="calendar"] .calendar-embed {
+    overflow-x: visible;
+  }
+
+  .critter-calendar {
+    margin-bottom: 1.25rem;
+  }
+
+  .critter-calendar .calendar-poster {
+    outline-width: 4px;
+    outline-offset: -6px;
+    border-width: 2px;
+  }
+
+  .critter-calendar .calendar-header {
+    padding: 1.15rem 0.9rem 1rem;
+  }
+
+  .critter-calendar .calendar-header::before,
+  .critter-calendar .calendar-header::after {
+    display: none;
+  }
+
+  .critter-calendar .year-title {
+    font-size: 2.05rem;
+    letter-spacing: 0.06em;
+  }
+
+  .critter-calendar .subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+
+  .critter-calendar .year-tabs {
+    gap: 4px;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .critter-calendar .year-tab {
+    font-size: 0.68rem;
+    padding: 6px 10px;
+  }
+
+  .critter-calendar .legend-bar {
+    padding: 14px 12px 16px;
+  }
+
+  .critter-calendar .legend-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .critter-calendar .legend-note {
+    max-width: none;
+  }
+
+  .critter-calendar .schedule-card {
+    max-width: none;
+    padding: 10px;
+  }
+
+  .critter-calendar .schedule-table th,
+  .critter-calendar .schedule-table td {
+    min-width: 0;
+    padding: 4px 2px;
+  }
+
+  .critter-calendar .months-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .critter-calendar .month-card,
+  .critter-calendar .month-card:nth-child(3n),
+  .critter-calendar .month-card:nth-child(4n) {
+    min-width: 0;
+    border-right: none;
+    padding: 16px 12px 18px;
+  }
+
+  .critter-calendar .month-card:nth-child(n+9) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .critter-calendar .month-card:last-child {
+    border-bottom: none;
+  }
+
+  .critter-calendar .month-name {
+    font-size: 0.95rem;
+  }
+
+  .critter-calendar .day {
+    min-height: 38px;
+    font-size: 0.8rem;
+  }
+
+  .critter-calendar .day-label {
+    font-size: 0.5rem;
+  }
+
+  .critter-calendar .calendar-footer {
+    padding: 12px 12px 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .calendar-section .critter-calendar .months-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-section .critter-calendar .month-card {
+    border-right: none;
+  }
+
+  .calendar-section .critter-calendar .month-card:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .calendar-section .critter-calendar .month-card:nth-child(n+9) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .calendar-section .critter-calendar .year-tabs {
+    gap: 4px;
+  }
+
+  .calendar-section .critter-calendar .year-tab {
+    font-size: 0.68rem;
+    padding: 6px 10px;
+  }
+
+  .calendar-section .critter-calendar .year-title {
+    font-size: 2rem;
+  }
+
+  .calendar-section .critter-calendar .month-card {
+    padding: 10px 8px 12px;
+  }
+
+  .calendar-section .critter-calendar .day {
+    min-height: 22px;
+    font-size: 0.62rem;
+  }
+
+  .calendar-section .critter-calendar .day-label {
+    font-size: 0.4rem;
+  }
+}

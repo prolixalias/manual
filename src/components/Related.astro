@@ -1,0 +1,19 @@
+---
+import { relatedManuals } from "../data/site";
+import ManualCard from "./ManualCard.astro";
+
+interface Props { current: string }
+const { current } = Astro.props;
+const others = relatedManuals(current, 2);
+---
+
+{others.length > 0 && (
+  <section class="related">
+    <div class="wrap">
+      <h2>Also in this house</h2>
+      <div class="related-grid">
+        {others.map((manual) => <ManualCard manual={manual} />)}
+      </div>
+    </div>
+  </section>
+)}
