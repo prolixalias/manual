@@ -22,6 +22,12 @@ export const site = {
   },
 };
 
+/** Browser tab title: `HOME`, or `HOME - Indoors`, `HOME - Vacation`, etc. */
+export function documentTitle(page?: string) {
+  if (!page || page === site.short || page === site.name) return site.short;
+  return `${site.short} - ${page}`;
+}
+
 export const nav = [
   { id: "home" as const, href: "/", label: "Home" },
   { id: "indoors" as const, href: "/indoors/", label: "Indoors" },

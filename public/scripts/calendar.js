@@ -154,7 +154,7 @@ function initCritterCalendar() {
     root.querySelector('#year-title').textContent = year;
 
     if (isStandalone) {
-      document.title = year + ' — Critter Calendar';
+      document.title = 'HOME - Calendar';
     }
 
     root.querySelector('#schedule-start-label').textContent = patternStart;
