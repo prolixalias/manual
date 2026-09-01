@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import Related from "../../../components/Related.astro";
 import { trees } from "../../../data/trees";
 ---
 
@@ -70,4 +71,6 @@ import { trees } from "../../../data/trees";
       ))}
     </div>
   </section>
+
+  <Related ids={["orchard"]} />
 </Base>

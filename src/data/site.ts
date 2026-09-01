@@ -42,6 +42,7 @@ export type Manual = {
   href: string;
   banner: string;
   blurb: string;
+  related?: string[];
 };
 
 export const manuals: Manual[] = [
@@ -52,6 +53,7 @@ export const manuals: Manual[] = [
     href: "/manuals/vacation/",
     banner: "/media/banner-vacation.png",
     blurb: "The leave-the-house checklist — thermostat, locks, trash, plants, boat.",
+    related: ["thermostat", "trash", "houseplants"],
   },
   {
     id: "thermostat",
@@ -92,6 +94,7 @@ export const manuals: Manual[] = [
     href: "/manuals/bedroom_upstairs_master/",
     banner: "/media/banner-bed-up.png",
     blurb: "Towels, sheets, mouthwash, red cups.",
+    related: ["bedroom_downstairs", "laundry"],
   },
   {
     id: "bedroom_downstairs",
@@ -100,6 +103,7 @@ export const manuals: Manual[] = [
     href: "/manuals/bedroom_downstairs/",
     banner: "/media/banner-bed-down.png",
     blurb: "Desk monitors, extra towels, and the bathroom closet.",
+    related: ["bedroom_upstairs_master", "laundry"],
   },
   {
     id: "tesla_charger",
@@ -156,6 +160,7 @@ export const manuals: Manual[] = [
     href: "/manuals/grill/",
     banner: "/media/banner-grill.png",
     blurb: "Clean it hot. Spare tank by the garage doors.",
+    related: ["fire_pit"],
   },
   {
     id: "fire_pit",
@@ -164,6 +169,7 @@ export const manuals: Manual[] = [
     href: "/manuals/fire_pit/",
     banner: "/media/banner-fire_pit.png",
     blurb: "Restock the wood. Kindling bucket and splitter are in the garage.",
+    related: ["grill"],
   },
   {
     id: "lawn",
@@ -198,8 +204,8 @@ export function manualById(id: string) {
   return manuals.find((m) => m.id === id);
 }
 
-export function relatedManuals(id: string, limit = 2) {
-  const current = manualById(id);
-  if (!current) return [];
-  return manuals.filter((m) => m.group === current.group && m.id !== id).slice(0, limit);
+export function manualsByIds(ids: string[]) {
+  return ids
+    .map((id) => manualById(id))
+    .filter((manual): manual is Manual => manual != null);
 }

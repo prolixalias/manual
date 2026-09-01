@@ -47,5 +47,7 @@ const catalog = manuals.find((item) => item.id === entry.id);
     </div>
   </section>
 
-  {catalog && <Related current={catalog.id} />}
+  {catalog?.related && catalog.related.length > 0 && (
+    <Related ids={catalog.related} />
+  )}
 </Base>
