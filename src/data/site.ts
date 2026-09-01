@@ -201,7 +201,7 @@ export const manuals: Manual[] = [
     href: "/manuals/orchard/",
     banner: "/media/banner-orchard.png",
     blurb: "Twelve trees on 40′ × 80′. Map, health watch, harvest, encyclopedia.",
-    related: ["lawn"],
+    related: ["lawn", "irrigation"],
   },
   {
     id: "pontoon",
