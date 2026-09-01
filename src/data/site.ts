@@ -62,6 +62,7 @@ export const manuals: Manual[] = [
     href: "/manuals/thermostat/",
     banner: "/media/banner-thermostat.png",
     blurb: "Kitchen-wall heat. Three occupancy sensors. Ask if the slider fights you.",
+    related: ["fireplace"],
   },
   {
     id: "fireplace",
@@ -70,6 +71,7 @@ export const manuals: Manual[] = [
     href: "/manuals/fireplace/",
     banner: "/media/banner-fireplace.png",
     blurb: "Off in summer. Siri and a laminated cheat sheet in winter.",
+    related: ["thermostat"],
   },
   {
     id: "kitchen_appliances",
