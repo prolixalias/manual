@@ -38,7 +38,6 @@ html[data-theme="dark"] body::before {
   --paper-glow: rgba(184, 149, 106, 0.08);
   --poster-inset: rgba(255, 255, 255, 0.6);
   --header-sheen: rgba(255, 255, 255, 0.5);
-  --header-stripe: rgba(184, 149, 106, 0.06);
   --tab-bg: rgba(255, 255, 255, 0.45);
   --tab-hover: #ffffff;
   --card-bg: #ffffff;
@@ -75,7 +74,6 @@ html[data-theme="dark"] .critter-calendar {
   --paper-glow: rgba(201, 166, 110, 0.1);
   --poster-inset: rgba(255, 255, 255, 0.07);
   --header-sheen: rgba(255, 255, 255, 0.04);
-  --header-stripe: rgba(201, 166, 110, 0.08);
   --tab-bg: rgba(255, 255, 255, 0.06);
   --tab-hover: #2a2622;
   --card-bg: #25211e;
@@ -134,15 +132,7 @@ html[data-theme="dark"] .critter-calendar {
 .critter-calendar .calendar-header {
   text-align: center;
   padding: 36px 32px 28px;
-  background:
-    linear-gradient(180deg, var(--header-sheen) 0%, transparent 100%),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 40px,
-      var(--header-stripe) 40px,
-      var(--header-stripe) 41px
-    );
+  background: linear-gradient(180deg, var(--header-sheen) 0%, transparent 100%);
   border-bottom: 2px solid var(--border);
   position: relative;
 }
@@ -517,7 +507,6 @@ html[data-theme="dark"] .critter-calendar {
     --paper-glow: rgba(184, 149, 106, 0.08);
     --poster-inset: rgba(255, 255, 255, 0.6);
     --header-sheen: rgba(255, 255, 255, 0.5);
-    --header-stripe: rgba(184, 149, 106, 0.06);
     --tab-bg: rgba(255, 255, 255, 0.45);
     --tab-hover: #ffffff;
     --card-bg: #ffffff;
