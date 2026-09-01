@@ -331,7 +331,7 @@ header.site {
   max-height: min(42vh, 22rem);
   overflow: auto;
   padding-right: 0.6rem;
-  font-family: Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+  font-family: var(--font);
   font-size: 0.8125rem;
   line-height: 1.38;
   color: rgba(255, 255, 255, 0.84);
@@ -356,7 +356,6 @@ header.site {
 }
 .home-dict-pron,
 .home-dict-pos {
-  font-family: inherit;
   font-style: italic;
   font-weight: 400;
   opacity: 0.88;
