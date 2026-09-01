@@ -328,9 +328,6 @@ header.site {
 .masthead .lede { color: rgba(255, 255, 255, 0.84); }
 .home-dict {
   margin: 0;
-  max-height: min(42vh, 22rem);
-  overflow: auto;
-  padding-right: 0.6rem;
   font-family: var(--font);
   font-size: 0.875rem;
   line-height: 1.38;
@@ -338,7 +335,7 @@ header.site {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   column-count: 2;
   column-gap: 1.35rem;
-  column-fill: auto;
+  column-fill: balance;
   hyphens: auto;
 }
 .home-dict p {
@@ -381,9 +378,6 @@ header.site {
     font-size: 0.75rem;
     line-height: 1.32;
     column-gap: 0.9rem;
-    max-height: none;
-    overflow: visible;
-    padding-right: 0;
   }
 }
 .masthead a { color: inherit; text-decoration: underline; }
