@@ -294,6 +294,8 @@ header.site {
   align-self: start;
   padding-top: 1.25rem;
   max-width: 46rem;
+  margin-left: calc((100% - min(46rem, 100% - 2 * var(--pad))) / 4);
+  margin-right: auto;
 }
 .masthead:has(.masthead-dict) > .wrap:not(.masthead-dict) {
   align-self: end;
