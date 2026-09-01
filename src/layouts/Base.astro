@@ -9,14 +9,15 @@ interface Props {
   op: NavId;
   title: string;
   description: string;
+  calendarDev?: boolean;
 }
 
-const { op, title, description } = Astro.props;
+const { op, title, description, calendarDev = false } = Astro.props;
 const pageTitle = documentTitle(title);
 ---
 
 <!doctype html>
-<html lang="en" data-op={op}>
+<html lang="en" data-op={op} data-calendar-dev={calendarDev ? "" : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

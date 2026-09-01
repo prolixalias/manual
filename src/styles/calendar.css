@@ -1,5 +1,4 @@
-/* TEMP watermark — delete this block to remove “Under development”. */
-body::before {
+html[data-calendar-dev] body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -9,7 +8,7 @@ body::before {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='220'><text x='190' y='120' text-anchor='middle' font-family='Jost,Segoe UI,sans-serif' font-size='22' font-weight='700' fill='%232c2825' fill-opacity='0.2' transform='rotate(-28 190 120)'>Under development</text></svg>");
   mix-blend-mode: multiply;
 }
-html[data-theme="dark"] body::before {
+html[data-calendar-dev][data-theme="dark"] body::before {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='220'><text x='190' y='120' text-anchor='middle' font-family='Jost,Segoe UI,sans-serif' font-size='22' font-weight='700' fill='%23ffffff' transform='rotate(-28 190 120)'>Under development</text></svg>");
   mix-blend-mode: difference;
   opacity: 0.35;

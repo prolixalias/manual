@@ -1,14 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
 import CritterCalendar from "../components/CritterCalendar.astro";
+import { site } from "../data/site";
 import "../styles/calendar.css";
-/* TEMP watermark lives at the top of calendar.css — delete that block to remove it. */
 ---
 
 <Base
   op="calendar"
   title="Calendar"
   description="Parenting schedule, 5-2-2-5 rotation from Monday 17 August 2026 onward."
+  calendarDev={site.calendarDevMode}
 >
   <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" />
 

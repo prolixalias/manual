@@ -31,6 +31,7 @@ CI uses the same `devbox.json` via `devbox run ci` (not `actions/setup-node`).
 - Orchard trees: `src/data/trees.ts`
 - Orchard map script: `public/scripts/orchard.js` (keep in sync with tree letters)
 - Calendar: `src/components/CritterCalendar.astro` + `public/scripts/calendar.js` + `src/styles/calendar.css`
+- Calendar “Under development” watermark: `calendarDevMode` in `src/data/site.ts` (`true` / `false`)
 
 ## Deploy
 

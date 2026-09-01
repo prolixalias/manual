@@ -4,6 +4,8 @@ export type GroupId = "indoors" | "outdoors";
 export const site = {
   name: "Home Manual",
   short: "HOME",
+  /** Repeating “Under development” watermark on /calendar/. */
+  calendarDevMode: true,
   address: {
     line1: "2925 Canton Road",
     line2: "Cheboygan, MI 49721",
