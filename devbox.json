@@ -1,21 +1,24 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.5/.schema/devbox.schema.json",
-  "packages": [
-    "bat@latest",
-    "curl@latest",
-    "delta@latest",
-    "direnv@latest",
-    "eza@latest",
-    "fzf@latest",
-    "gh@latest",
-    "git@latest",
-    "jq@latest",
-    "nodejs@22",
-    "ripgrep@latest",
-    "wget@latest",
-    "playwright-test@latest",
-    "chromium@latest"
-  ],
+  "packages": {
+    "bat":             "latest",
+    "curl":            "latest",
+    "delta":           "latest",
+    "direnv":          "latest",
+    "eza":             "latest",
+    "fzf":             "latest",
+    "gh":              "latest",
+    "git":             "latest",
+    "jq":              "latest",
+    "nodejs":          "24",
+    "ripgrep":         "latest",
+    "wget":            "latest",
+    "playwright-test": "latest",
+    "chromium": {
+      "version":            "latest",
+      "excluded_platforms": ["aarch64-darwin", "x86_64-darwin"]
+    }
+  },
   "env": {
     "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS": "true"
   },
@@ -58,7 +61,7 @@
       "help": [
         "echo 'Home manual'",
         "echo ''",
-        "echo 'All Node work is Devbox nodejs@22.'",
+        "echo 'All Node work is Devbox nodejs@24.'",
         "echo ''",
         "echo '  devbox run install     npm install'",
         "echo '  devbox run dev         http://127.0.0.1:4321'",

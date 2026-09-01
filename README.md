@@ -4,7 +4,7 @@ Family handbook for 2925 Canton Road, Cheboygan. Astro site — same visual lang
 
 ## Development
 
-Node work is Devbox `nodejs@22`, not the host toolchain.
+Node work is Devbox `nodejs@24`, not the host toolchain.
 
 ```shell
 devbox shell
@@ -20,7 +20,7 @@ devbox run preview    # serve dist/
 devbox run which-node # confirm Nix node
 ```
 
-`devbox run which-node` should print a Nix store path and Node 22.
+`devbox run which-node` should print a Nix store path and Node 24.
 
 CI uses the same `devbox.json` via `devbox run ci` (not `actions/setup-node`).
 
