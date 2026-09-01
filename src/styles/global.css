@@ -378,9 +378,12 @@ header.site {
 @media (max-width: 720px) {
   .masthead-dict { padding-top: 0.85rem; }
   .home-dict {
-    column-count: 1;
-    font-size: 0.75rem;
-    max-height: min(26vh, 11rem);
+    font-size: 0.68rem;
+    line-height: 1.32;
+    column-gap: 0.9rem;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 .masthead a { color: inherit; text-decoration: underline; }

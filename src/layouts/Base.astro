@@ -17,7 +17,7 @@ const pageTitle = documentTitle(title);
 ---
 
 <!doctype html>
-<html lang="en" data-op={op} data-calendar-dev={calendarDev ? "" : undefined}>
+<html lang="en" data-theme="dark" data-op={op} data-calendar-dev={calendarDev ? "" : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,10 +25,7 @@ const pageTitle = documentTitle(title);
     <script is:inline>
       try {
         var stored = localStorage.getItem("manual-theme");
-        var theme = stored === "dark" || stored === "light"
-          ? stored
-          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.setAttribute("data-theme", stored === "light" ? "light" : "dark");
       } catch (e) {}
     </script>
     <title>{pageTitle}</title>
