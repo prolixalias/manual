@@ -186,6 +186,15 @@ export const manuals: Manual[] = [
     related: ["orchard"],
   },
   {
+    id: "irrigation",
+    title: "Irrigation",
+    group: "outdoors",
+    href: "/manuals/irrigation/",
+    banner: "/media/banner-lawn.png",
+    blurb: "Zones and schedules. Controller is FlowControl.",
+    related: ["lawn", "orchard"],
+  },
+  {
     id: "orchard",
     title: "Orchard",
     group: "outdoors",
