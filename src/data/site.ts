@@ -144,6 +144,7 @@ export const manuals: Manual[] = [
     href: "/manuals/dock/",
     banner: "/media/banner-dock.png",
     blurb: "Fiber run to the dock — strand colors, loss, and which spare to use.",
+    related: ["pontoon"],
   },
   {
     id: "cart",
@@ -178,6 +179,7 @@ export const manuals: Manual[] = [
     href: "/manuals/lawn/",
     banner: "/media/banner-lawn.png",
     blurb: "Carl on Thursdays. Matt on the beds. S&G on the path lights.",
+    related: ["orchard"],
   },
   {
     id: "orchard",
@@ -186,6 +188,7 @@ export const manuals: Manual[] = [
     href: "/manuals/orchard/",
     banner: "/media/banner-orchard.png",
     blurb: "Twelve trees on 40′ × 80′. Map, health watch, harvest, encyclopedia.",
+    related: ["lawn"],
   },
   {
     id: "pontoon",
@@ -194,6 +197,7 @@ export const manuals: Manual[] = [
     href: "/manuals/pontoon/",
     banner: "/media/banner-pontoon.png",
     blurb: "Anchor In Marina if you need a rental. Tie it up. Top the tank.",
+    related: ["dock"],
   },
 ];
 
