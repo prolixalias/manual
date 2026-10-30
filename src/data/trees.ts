@@ -17,6 +17,8 @@ export type Tree = {
   uses: string;
   notes: string;
   learn_more: string;
+  /** What used to stand at this letter, kept for history when a tree is replaced. */
+  history?: string;
 };
 
 export const trees: Tree[] = [
@@ -86,7 +88,7 @@ export const trees: Tree[] = [
     type: "Heritage apple",
     sick: false,
     at_a_glance: "Old Wisconsin variety famous for enormous apples — often a pound or more.",
-    pollination: "Needs a compatible apple bloomer; Golden Delicious (H or L) works well here.",
+    pollination: "Needs a compatible apple bloomer; Golden Delicious (H) works well here.",
     size: "About 12' tall × 14' wide at maturity on semi-dwarf rootstock.",
     harvest: "Late summer into fall. Large, slightly ribbed fruit; seeds brown when ready.",
     harvest_season: "August–October",
@@ -224,23 +226,23 @@ export const trees: Tree[] = [
   },
   {
     letter: "L",
-    slug: "golden-delicious-apple-semi-dwarf",
-    name: "Golden Delicious Apple",
+    slug: "burgundy-plum",
+    name: "Burgundy Plum",
     rootstock: "Semi-Dwarf",
-    fruit: "apple",
-    emoji: "🍎",
-    type: "All-purpose apple",
-    sick: true,
-    active_issue: "Fire ants at the base of the trunk",
-    treatment: "Borax-sugar bait or diatomaceous earth near the mound; tanglefoot band on the trunk to block climbers.",
-    at_a_glance: "Same variety as tree H on a semi-dwarf rootstock — larger tree, larger canopy.",
-    pollination: "Partially self-fertile; pairs well with Wolf River (D).",
-    size: "About 14' tall × 14' wide at maturity on semi-dwarf rootstock.",
-    harvest: "Mid to late fall, same as tree H.",
-    harvest_season: "September–October",
-    uses: "Fresh eating, baking, and storage.",
-    notes: "Currently flagged sick — fire ants at the base. Borax-sugar bait, diatomaceous earth, or tanglefoot on the trunk.",
-    learn_more: "https://en.wikipedia.org/wiki/Golden_Delicious",
+    fruit: "plum",
+    emoji: "🫐",
+    type: "Japanese plum",
+    sick: false,
+    at_a_glance: "Japanese plum with maroon skin and deep red, sweet, low-tart flesh — fruit hangs on the tree for weeks.",
+    pollination: "Self-fruitful — no partner required, and a strong pollinizer for other Japanese plums. Won't cross with Stanley (K, European); not a listed pollinizer for Pipestone (J).",
+    size: "About 12' tall × 12' wide at maturity on semi-dwarf rootstock; upright, narrow habit. Summer pruning can hold it near 10'.",
+    harvest: "Prolonged harvest over several weeks (mid-July to mid-August in California; expect later here). Firm and crunchy when flesh first turns red, sweeter and softer the longer it hangs.",
+    harvest_season: "August",
+    uses: "Fresh eating, cooking, drying, jams, and preserves.",
+    notes: "Healthy. Replanted at L (semi-dwarf). Sets heavily — thin crowded young fruit for better size. Japanese plums bloom early, so cover for late frost. Watch for plum curculio, brown rot, and black knot.",
+    learn_more: "https://www.wheretobuy.davewilson.com/product-information/product/burgundy-plum",
+    // TODO(Paul): planting date, rootstock name, and source nursery for the Burgundy at L are not recorded.
+    history: "Replaced the semi-dwarf Golden Delicious apple (same variety as H), which had been flagged sick with fire ants at the base of the trunk. Keep an eye out for ants returning. Replanting date and source not yet recorded.",
   },
 ];
 

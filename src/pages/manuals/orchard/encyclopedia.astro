@@ -61,6 +61,12 @@ import { trees } from "../../../data/trees";
                 )}
               </dd>
             </div>
+            {tree.history && (
+              <div>
+                <dt>History</dt>
+                <dd>{tree.history}</dd>
+              </div>
+            )}
           </dl>
           {tree.learn_more && (
             <p>
