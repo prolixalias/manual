@@ -19,6 +19,8 @@ export type Tree = {
   learn_more: string;
   /** What used to stand at this letter, kept for history when a tree is replaced. */
   history?: string;
+  /** Where this particular tree came from, when known. */
+  source?: { name: string; url: string };
 };
 
 export const trees: Tree[] = [
@@ -210,14 +212,14 @@ export const trees: Tree[] = [
     letter: "K",
     slug: "stanley-plum",
     name: "Stanley Plum",
-    rootstock: "Semi-Dwarf",
+    rootstock: "Dwarf",
     fruit: "plum",
     emoji: "🫐",
     type: "European (prune) plum",
     sick: false,
     at_a_glance: "Classic oval blue prune plum — reliable, self-fertile, and heavy-bearing.",
     pollination: "Self-fertile; heavier crops with a second European or compatible plum nearby.",
-    size: "About 15' tall × 12' wide at maturity on semi-dwarf rootstock.",
+    size: "About 8–10' tall × 8–10' wide at maturity on dwarf rootstock.",
     harvest: "Early September when dark blue with a powdery bloom and slight give.",
     harvest_season: "September",
     uses: "Fresh eating, prunes, jam, and baking.",
@@ -234,15 +236,16 @@ export const trees: Tree[] = [
     type: "Japanese plum",
     sick: false,
     at_a_glance: "Japanese plum with maroon skin and deep red, sweet, low-tart flesh — fruit hangs on the tree for weeks.",
-    pollination: "Self-fruitful — no partner required, and a strong pollinizer for other Japanese plums. Won't cross with Stanley (K, European); not a listed pollinizer for Pipestone (J).",
-    size: "About 12' tall × 12' wide at maturity on semi-dwarf rootstock; upright, narrow habit. Summer pruning can hold it near 10'.",
+    pollination: "Self-pollinating — one tree will fruit on its own, and it's a strong pollinizer for other Japanese plums. Won't cross with Stanley (K, European); not a listed pollinizer for Pipestone (J).",
+    size: "About 10–15' tall × 10–15' wide at maturity (per Trees.com); upright, narrow habit. Summer pruning can hold it nearer 10'.",
     harvest: "Prolonged harvest over several weeks (mid-July to mid-August in California; expect later here). Firm and crunchy when flesh first turns red, sweeter and softer the longer it hangs.",
     harvest_season: "August",
     uses: "Fresh eating, cooking, drying, jams, and preserves.",
-    notes: "Healthy. Replanted at L (semi-dwarf). Sets heavily — thin crowded young fruit for better size. Japanese plums bloom early, so cover for late frost. Watch for plum curculio, brown rot, and black knot.",
+    notes: "Healthy. Replanted at L (semi-dwarf) from Trees.com. Rated Zones 5–8, hardy to about −10°F — Zone 5a winters can dip colder, so guard and wrap the young trunk. Japanese plums bloom early, so cover for late frost. Water deeply, letting the soil dry slightly but never fully, and keep watering into early fall. Low-nitrogen 10-10-10 in spring and midsummer, 6–8\" from the trunk. First pruning a year after planting, in late winter: favor well-spaced, horizontal branches. Sets heavily — thin crowded young fruit for better size. Watch for plum curculio, brown rot, and black knot.",
     learn_more: "https://www.wheretobuy.davewilson.com/product-information/product/burgundy-plum",
-    // TODO(Paul): planting date, rootstock name, and source nursery for the Burgundy at L are not recorded.
-    history: "Replaced the semi-dwarf Golden Delicious apple (same variety as H), which had been flagged sick with fire ants at the base of the trunk. Keep an eye out for ants returning. Replanting date and source not yet recorded.",
+    // TODO(Paul): planting date and rootstock name for the Burgundy at L are not recorded (Trees.com listing doesn't name the rootstock).
+    history: "Replaced the semi-dwarf Golden Delicious apple (same variety as H), which had been flagged sick with fire ants at the base of the trunk. The ants were treated and the spot is clear. Replanting date not yet recorded.",
+    source: { name: "Trees.com", url: "https://www.trees.com/products/burgundy-plum-tree?variant=39943771455550" },
   },
 ];
 

@@ -9,8 +9,8 @@ const trees = [
     { id: 'tree-08', left: 200, top: 640, type: 'apple',  sick: false, name: 'Golden Delicious Apple D', desc: '15\' tall x 10\' wide<br>Healthy', emoji: '🍎', ariaLabel: 'H', width_ft: 10 },
     { id: 'tree-09', left: 300, top: 160, type: 'pear',   sick: false, name: 'Seckel Pear D', desc: '10\' tall x 7\' wide<br>Healthy', emoji: '🍐', ariaLabel: 'I', width_ft: 7 },
     { id: 'tree-10', left: 300, top: 320, type: 'plum',   sick: false, name: 'Pipestone Plum SD', desc: '15\' tall x 12\' wide<br>Healthy', emoji: '🫐', ariaLabel: 'J', width_ft: 12 },
-    { id: 'tree-11', left: 300, top: 480, type: 'plum',   sick: false, name: 'Stanley Plum D', desc: '15\' tall x 12\' wide<br>Healthy', emoji: '🫐', ariaLabel: 'K', width_ft: 12 },
-    { id: 'tree-12', left: 300, top: 640, type: 'plum',   sick: false, name: 'Burgundy Plum SD', desc: '12\' tall x 12\' wide<br>Healthy', emoji: '🫐', ariaLabel: 'L', width_ft: 12 }
+    { id: 'tree-11', left: 300, top: 480, type: 'plum',   sick: false, name: 'Stanley Plum D', desc: '8-10\' tall x 8-10\' wide<br>Healthy', emoji: '🫐', ariaLabel: 'K', width_ft: 10 },
+    { id: 'tree-12', left: 300, top: 640, type: 'plum',   sick: false, name: 'Burgundy Plum SD', desc: '10-15\' tall x 10-15\' wide<br>Healthy', emoji: '🫐', ariaLabel: 'L', width_ft: 15 }
 ];
 
 const container = document.getElementById('orchard-container');

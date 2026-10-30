@@ -61,6 +61,12 @@ import { trees } from "../../../data/trees";
                 )}
               </dd>
             </div>
+            {tree.source && (
+              <div>
+                <dt>Source</dt>
+                <dd><a href={tree.source.url} rel="noopener noreferrer">{tree.source.name}</a></dd>
+              </div>
+            )}
             {tree.history && (
               <div>
                 <dt>History</dt>
